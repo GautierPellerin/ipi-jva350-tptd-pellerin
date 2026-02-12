@@ -38,7 +38,7 @@ public class SalarieAideADomicileTest {
 	@CsvSource({
 	    "2025-11-01,2025-12-01"
 	})
-	void testCalculeJoursDeCongeDecomptesPourPlageRight(String debut, String fin) {
+	public void testCalculeJoursDeCongeDecomptesPourPlageRight(String debut, String fin) {
 	    // Given
 	    SalarieAideADomicile unSalarie = new SalarieAideADomicile();
 	    LocalDate dateDebut = LocalDate.parse(debut);
@@ -54,9 +54,10 @@ public class SalarieAideADomicileTest {
 	
 	@ParameterizedTest
 	@CsvSource({
+	    "2025-11-01,2025-12-01",
 	    "2025-11-01,2025-12-01"
 	})
-	void testCalculeJoursDeCongeDecomptesPourPlageWrong(String debut, String fin) {
+	public void testCalculeJoursDeCongeDecomptesPourPlageWrong(String debut, String fin) {
 	    // Given
 	    SalarieAideADomicile unSalarie = new SalarieAideADomicile();
 	    LocalDate dateDebut = LocalDate.parse(debut);
@@ -69,4 +70,32 @@ public class SalarieAideADomicileTest {
 	    Assertions.assertNotEquals(20, joursDeConges.size());
 	}
 	
+	//Methode correction du prof
+	@ParameterizedTest
+	@CsvSource({
+	    "2025-11-01,2025-12-01,24",
+	    "2025-11-01,2025-12-01,24"
+	})
+	public void testCalculeJoursDeCongeDecomptesPourPlage(String debut, String fin, int nbJoursDeConges) {
+	    // Given
+	    SalarieAideADomicile unSalarie = new SalarieAideADomicile();
+	    LocalDate dateDebut = LocalDate.parse(debut);
+	    LocalDate dateFin = LocalDate.parse(fin);
+
+	    // When
+	    LinkedHashSet<LocalDate> joursDeConges = unSalarie.calculeJoursDeCongeDecomptesPourPlage(dateDebut, dateFin);
+
+	    // Then
+	    Assertions.assertEquals(nbJoursDeConges, joursDeConges.size());
+	}
+	
+	@Test
+	public void testFindByNom() {
+		// Given
+		
+		// When
+		
+		// Then
+		
+	}
 }
