@@ -147,8 +147,22 @@ public final class Entreprise {
      * @return
      */
     public static boolean estDansPlage(LocalDate d, LocalDate debut, LocalDate fin) {
-        // à implémenter en TDD !
-        throw new RuntimeException("à implémenter en TDD !");
+    	/* Sans l'utilisation du TDD,nous aurions sûrement oublié des cas d'erreur ou de réussite 
+    	 * que nous n'aurions donc pas implémenté.
+    	 * De plus, la simplicité des tests unitaires nous a permis de séparer chaque cas 
+    	 * pour bien les analyser et ne pas se mélanger.
+    	*/
+        if (d == null || debut == null || fin == null) {
+            throw new IllegalArgumentException("Les dates passées en paramètre ne peuvent pas être nulles");
+        }
+
+        // Gestion de l'incohérence de plage 
+        if (debut.isAfter(fin)) {
+            return false;
+        }
+        // Gestion de l'inclusivité 
+        return !d.isBefore(debut) && !d.isAfter(fin);
     }
+
 
 }

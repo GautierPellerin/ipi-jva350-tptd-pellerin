@@ -51,4 +51,29 @@ public class SalarieAideADomicileRepositoryTest {
         // THEN
         Assertions.assertNull(result); // Je teste le cas où je ne trouve pas de salarié
     }
+
+    @Test
+    public void testPartCongesPrisTotauxAnneeNMoins1() {
+        // GIVEN
+        SalarieAideADomicile salarie1 = new SalarieAideADomicile();
+        salarie1.setNom("Dupont");
+        salarie1.setCongesPayesPrisAnneeNMoins1(10.0);
+        salarie1.setCongesPayesAcquisAnneeNMoins1(20.0);
+        SalarieAideADomicile salarie2 = new SalarieAideADomicile();
+        salarie2.setNom("Durand");
+        salarie2.setCongesPayesPrisAnneeNMoins1(5.0);
+        salarie2.setCongesPayesAcquisAnneeNMoins1(15.0);
+        SalarieAideADomicileRepository.save(salarie1);
+        SalarieAideADomicileRepository.save(salarie2);
+        // WHEN
+        Double result =
+                SalarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1();
+        // THEN
+        // Le résultat attendu est un nombre à virgule ;
+        // donc comme les calculs peuvent produire de légères imprécisions,
+        // j'utilise une tolérance (delta : 0.0001) pour la comparaison
+        Double attendu = 15.0 / 35.0;
+        Assertions.assertEquals(attendu, result, 0.0001);
+    }
+
 }

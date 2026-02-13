@@ -11,6 +11,7 @@ import java.util.Objects;
 @Entity
 public class SalarieAideADomicile {
 
+
     public static final float congesPayesAcquisParMois= 2.5f;
 
 
