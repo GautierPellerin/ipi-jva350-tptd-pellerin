@@ -1,6 +1,7 @@
 package com.ipi.jva350.repository;
 import com.ipi.jva350.model.SalarieAideADomicile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ public class SalarieAideADomicileRepositoryTest {
     @Autowired
     private SalarieAideADomicileRepository SalarieAideADomicileRepository;
 
+    @BeforeEach
+    public void before() {
+    	SalarieAideADomicileRepository.deleteAll();
+    }
+    
     @Test
     public void testFindByNomRight() {
 
